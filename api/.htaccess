@@ -1,0 +1,16 @@
+# API security
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Access-Control-Allow-Credentials "true"
+</IfModule>
+
+# Only allow POST and OPTIONS for track endpoint
+<Files "track.php">
+    <LimitExcept POST OPTIONS>
+        Deny from all
+    </LimitExcept>
+</Files>
+
+# Disable directory listing
+Options -Indexes
